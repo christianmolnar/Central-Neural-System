@@ -119,15 +119,25 @@ A learning becomes a Prime Principle when it:
 - **ALWAYS ask for user approval** before infrastructure or major changes
 - **NEVER proceed** unless explicit authorization given
 - This includes:
+  - **Git commit** - Always ask before committing code
+  - **Git push** - Always ask before pushing to remote
   - Running installation scripts
   - Deploying to production or staging
   - Modifying deployed systems
   - Deleting data or files
   - Overwriting existing work
   - Any operation that could cause data loss
-- User confirmation is **MANDATORY** for destructive or high-impact operations
+- User confirmation is **MANDATORY** for all commits, pushes, and infrastructure operations
 - Even if confident in the approach, approval is required first
 - Better to ask unnecessarily than to cause data loss
+- **Standard approval workflow:**
+  1. Complete the work
+  2. Stage changes with `git add`
+  3. Show user what will be committed (git status/diff)
+  4. Ask: "May I commit these changes with message: [message]?"
+  5. Wait for explicit approval
+  6. After commit, ask: "May I push to origin/main?"
+  7. Wait for explicit approval before pushing
 
 **Validation Status**: ✅ Active
 **Last Validated**: 2025-12-24
