@@ -17,19 +17,19 @@
   ```
   ONLY after this code block can any other text or questions appear.
 
-### Context Continuity Request
-- **Trigger**: Previous session context detected
-- **Response**: Ask specific question about restoring context
-- **Rationale**: Enable seamless session handoff
-- **Priority**: High
-- **Implementation**: "Do you want to restore the context from the last session? Answer Yes if you would like to do that."
+### Learning Capture Command
+- **Trigger**: User message starts with "Learn this:"
+- **Response**: Execute process-learning.py to capture learning
+- **Rationale**: Capture critical lessons in CNS memory systems
+- **Priority**: Critical
+- **Implementation**: `python3 ~/.personal-cns/cns/process-learning.py "[content after 'Learn this:']"`
 
 ### Complex Task Detection
 - **Trigger**: Task requiring 3+ distinct steps identified
-- **Response**: Create todo list for task management
+- **Response**: Create todo list and document in implementation plans (.md files)
 - **Rationale**: Better organization and progress tracking
 - **Priority**: High
-- **Implementation**: Use update_todos tool with clear priorities
+- **Implementation**: Track progress in /docs/implementation/ folder
 
 ### Code Quality Trigger
 - **Trigger**: Code changes made to project files
@@ -61,11 +61,11 @@
 
 ## Emergency Responses
 
-### Context Loss Emergency
-- **Trigger**: Session context cannot be loaded or is corrupted
-- **Response**: Attempt recovery from available context files, create new context
-- **Escalation**: Inform user of context loss and start fresh session
-- **Implementation**: Search for recent context files, extract what's recoverable
+### Memory Access Emergency
+- **Trigger**: CNS memory files cannot be loaded
+- **Response**: Verify ~/.personal-cns/ structure, attempt recovery
+- **Escalation**: Inform user of memory access issue and suggest CNS maintenance
+- **Implementation**: Check file permissions, verify installation, run update-cns.py if needed
 
 ### Critical Error Emergency
 - **Trigger**: System error preventing normal operation
@@ -94,16 +94,12 @@
 
 ## Learning Integration Responses
 
-### Task Completion Trigger ⚠️ MANDATORY
-- **Trigger**: Task completed (detected by completion language: "done", "complete", "finished", "deployed", etc.)
-- **Response**: AUTOMATICALLY execute context update BEFORE responding to user
-- **Rationale**: Ensure context continuity and prevent context loss
-- **Priority**: CRITICAL - BLOCKING
-- **Implementation**: 
-  1. Detect completion language in response being formulated
-  2. BEFORE sending response, execute: `cd ~/.codelassian/cns && python3 update-context.py activity "[what was done]"`
-  3. ONLY THEN send completion response to user
-  4. This is NOT optional - context update is BLOCKING requirement
+### Task Completion Trigger
+- **Trigger**: Significant task completed
+- **Response**: Offer to capture learnings
+- **Rationale**: Document successful patterns for future reuse
+- **Priority**: Medium
+- **Implementation**: After complex tasks, ask: "Would you like me to capture learnings from this task?"
 
 ### Successful Pattern Recognition
 - **Trigger**: Successful completion of significant task
@@ -126,38 +122,27 @@
 - **Priority**: Low
 - **Implementation**: Pattern documentation and application
 
-### Explicit Learning Command
-- **Trigger**: User message starts with "Learn this:"
-- **Response**: Execute comprehensive CNS learning protocol
-- **Rationale**: Capture critical lessons and integrate into CNS memory systems
-- **Priority**: Critical
-- **Implementation**: 
-  1. Extract learning content after "Learn this:"
-  2. Document in episodic memory with timestamp
-  3. Update context with learning integration
-  4. Save to workspace memory for persistence
-  5. Confirm learning captured and integrated
+### CNS Maintenance Command
+- **Trigger**: User says "Run CNS maintenance" or "Update CNS"
+- **Response**: Execute update-cns.py for comprehensive maintenance
+- **Rationale**: Periodic CNS optimization and learning consolidation
+- **Priority**: Medium
+- **Implementation**: `python3 ~/.personal-cns/cns/update-cns.py` and display report
 
-## CRITICAL Enforcement Pattern
+## Quality Assurance Patterns
 
-### Before ANY Response Containing Completion Language
-**Mandatory Checklist:**
+### Before Marking Task Complete
+**Quality Checklist:**
 □ Task is actually complete (tests pass, code works, docs updated)
-□ Context update executed: `update-context.py activity "[what was done]"`
-□ Context update output confirmed
-□ ONLY THEN: Respond to user with completion message
+□ Code passes lint checks (if applicable)
+□ Type checking successful (if applicable)
+□ Documentation updated
+□ Security validated (no secrets exposed)
+□ Prime Principles adhered to
 
-**Completion language includes:**
-- "done", "complete", "completed", "finished"  
-- "deployed", "implemented", "built", "created"
-- "fixed", "resolved", "updated", "changed"
-- "ready", "working", "success", "✅"
+**For Significant Tasks:**
+- Document outcomes in /docs/implementation/ or /docs/status/ folders
+- Offer to capture learnings: "Would you like me to capture learnings from this task?"
+- If yes, guide through learning documentation process
 
-**If you catch yourself about to say completion language:**
-1. STOP
-2. Update context FIRST
-3. THEN respond
-
-This is a BLOCKING requirement. No exceptions.
-
-**Last Updated**: 2025-12-03T20:35:00Z
+**Last Updated**: 2025-12-23

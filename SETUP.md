@@ -11,8 +11,11 @@ cd ~/Repos/personal-cns-system
 The script will:
 - Create `~/.personal-cns/` directory
 - Copy CNS components
+- **Deploy Python automation scripts**
 - Create necessary subdirectories
 - Set up initial memory structure
+- Create reflex-state.json for automation tracking
+- Create template files for learnings
 
 ### Option 2: Manual Installation
 ```bash
@@ -25,7 +28,58 @@ cp -r document-library ~/.personal-cns/
 
 # Create memory subdirectories
 mkdir -p ~/.personal-cns/cns/memory/episodic
-mkdir -p ~/.personal-cns/cns/memory/context
+
+# Initialize reflex state tracking
+echo '{"last_principle_eval": null, "last_pattern_analysis": null, "learning_count": 0}' > ~/.personal-cns/cns/reflex-state.json
+```
+
+## Python Automation Scripts
+
+CNS includes Python scripts for automated maintenance and learning:
+
+### Deployed Scripts
+Located in `~/.personal-cns/cns/`:
+- **startup-sequence.py** - Display CNS initialization status (for debugging)
+- **process-learning.py** - Capture learnings in episodic memory
+- **update-cns.py** - Run comprehensive CNS maintenance
+
+Located in `~/.personal-cns/cns/brain/`:
+- **principle-evaluator.py** - Evaluate and update Prime Principles
+- **user-pattern-learner.py** - Analyze user interaction patterns
+
+### Natural Language Commands
+You use natural language with Copilot, not manual script execution:
+
+**Learning Capture:**
+```
+You: "Learn this: [your learning content here]"
+Copilot executes: process-learning.py
+```
+
+**CNS Maintenance:**
+```
+You: "Run CNS maintenance"
+Copilot executes: update-cns.py
+```
+
+**After Complex Tasks:**
+```
+Copilot: "Would you like me to capture learnings from this task?"
+You: "Yes"
+Copilot guides learning documentation
+```
+
+### Manual Script Usage (Advanced)
+If needed for debugging:
+```bash
+# Capture learning
+python3 ~/.personal-cns/cns/process-learning.py "Learning content here"
+
+# Run maintenance
+python3 ~/.personal-cns/cns/update-cns.py
+
+# Display CNS status
+python3 ~/.personal-cns/cns/startup-sequence.py
 ```
 
 ## VS Code Configuration
@@ -108,19 +162,26 @@ After installation:
 ```
 ~/.personal-cns/
 ├── cns/
+│   ├── startup-sequence.py          # CNS status display
+│   ├── process-learning.py          # Learning capture
+│   ├── update-cns.py               # Maintenance automation
+│   ├── reflex-state.json           # Automation tracking
 │   ├── brain/
 │   │   ├── identity.md              # AI assistant identity
 │   │   ├── capabilities.md          # Enhanced capabilities
 │   │   ├── prime-principles.md      # Operating principles
 │   │   ├── decision-framework.md    # Decision process
-│   │   └── user-patterns.md         # User coding patterns
+│   │   ├── user-patterns.md         # User coding patterns
+│   │   ├── principle-evaluator.py   # Principle updates
+│   │   └── user-pattern-learner.py  # Pattern analysis
 │   ├── memory/
 │   │   ├── episodic/                # Learning entries
+│   │   │   ├── README.md
+│   │   │   └── learning-YYYY-MM-DD-HHMMSS.md  # Timestamped learnings
 │   │   ├── semantic/                # Knowledge base
 │   │   │   └── best-practices.md
 │   │   ├── procedural/              # Workflow patterns
 │   │   │   └── workflow-patterns.md
-│   │   ├── context/                 # Session contexts
 │   │   └── user-preferences.md      # Detailed preferences
 │   ├── reflexes/
 │   │   ├── trigger-responses.md     # Automatic behaviors
@@ -153,6 +214,31 @@ For each project where you want CNS:
 3. **Reload VS Code**
    - Reload window or restart VS Code
 
+## Viewing Your Learnings in VS Code
+
+To see your accumulated learnings and memory system directly in VS Code:
+
+1. **Add CNS Folder to Workspace**
+   - File → Add Folder to Workspace...
+   - Navigate to `~/.personal-cns`
+   - Click "Add"
+
+2. **Benefits**:
+   - View episodic learnings as they accumulate
+   - Edit CNS configuration files directly
+   - Review your accumulated best practices
+   - Track your AI assistant's learning progress
+   - Monitor automation with reflex-state.json
+
+3. **What You'll See**:
+   - `cns/memory/episodic/` - All your timestamped learning entries
+   - `cns/memory/semantic/best-practices.md` - Accumulated knowledge
+   - `cns/brain/` - Core configuration
+   - `cns/reflexes/` - Automatic behaviors
+   - `cns/reflex-state.json` - Automation tracking
+
+This makes CNS transparent and lets you review what your AI assistant has learned.
+
 ## Verification
 
 ### Test CNS Loading
@@ -160,15 +246,17 @@ For each project where you want CNS:
 2. Type: "Hello, can you confirm CNS is loaded?"
 3. Copilot should reference CNS components and Prime Principles
 
-### Test Context Continuity
-1. Complete a small task in one chat session
-2. Start a new chat session
-3. Copilot should be able to reference previous session context
+### Test Learning Capture
+1. In Copilot Chat, type: "Learn this: Test learning for verification"
+2. Copilot executes process-learning.py
+3. Check `~/.personal-cns/cns/memory/episodic/` for new timestamped file
+4. Verify `best-practices.md` was updated
 
-### Test Learning Integration
-1. Complete a significant task
-2. Check `~/.personal-cns/cns/memory/episodic/` for learning entries
-3. Start new session and ask about recent learnings
+### Test Automated Maintenance
+1. Type: "Run CNS maintenance"
+2. Copilot executes update-cns.py
+3. Review maintenance report
+4. Check that `reflex-state.json` was updated
 
 ## Troubleshooting
 

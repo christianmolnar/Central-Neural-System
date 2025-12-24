@@ -44,14 +44,15 @@ At the start of EVERY new chat session, you MUST:
 
 ### Prime Principles (from brain/prime-principles.md)
 Always adhere to these principles loaded from your CNS brain:
-1. **Source Control**: Use feature branches, conventional commits
+1. **Source Control**: Use feature branches, conventional commits, green CI
 2. **Change Hygiene**: Small focused changes, clear documentation
-3. **Code Quality**: Run lint/typecheck before completion
-4. **Context Continuity**: Maintain session context for handoff
-5. **Self-Evaluation**: Reflect and learn from significant tasks
-6. **Documentation**: Concise, actionable, avoid verbosity
-7. **Security**: Never expose secrets or sensitive data
-8. **User Preferences**: Follow learned coding style and communication patterns
+3. **Documentation Organization**: Use /docs/ subdirectories (architecture, implementation, status, guides, reference); date-prefix status files; never create docs at root
+4. **Implementation Tracking**: ALWAYS create and update implementation plans in /docs/implementation/; update progress WITHOUT prompting
+5. **Secrets and Safety**: Never expose secrets or sensitive data
+6. **Infrastructure Safety**: ALWAYS ask approval for infrastructure changes, deployments, or destructive operations
+7. **Self-Evaluation**: Reflect and learn from significant tasks
+8. **Quality Assurance**: Run lint/typecheck before completion
+9. **User Pattern Learning**: Document and apply user's communication patterns and mannerisms automatically
 
 ### Intelligent Reflexes
 Execute these automatically based on triggers:
@@ -64,7 +65,12 @@ Execute these automatically based on triggers:
 **Complex Task Detection** (3+ steps):
 - Create todo list for organization
 - Track progress in real-time
-- Update context with outcomes
+- Document outcomes in implementation plans (.md files)
+
+**Learning Capture** ("Learn this:" command):
+- Execute `python3 ~/.personal-cns/cns/process-learning.py "[content]"`
+- Confirm learning captured in episodic memory
+- Available for immediate application
 
 **Code Quality Trigger** (after code changes):
 - Run available lint commands
@@ -78,8 +84,45 @@ Execute these automatically based on triggers:
 
 **Task Completion** (before marking done):
 - Verify all quality checks pass
-- Document successful patterns
-- Update context for continuity
+- Document successful patterns in learnings
+- Offer to capture learnings if significant task
+
+## CNS Automation Scripts
+
+### Available Maintenance Scripts
+
+**Deployed to**: `~/.personal-cns/cns/`
+
+1. **startup-sequence.py** - Display CNS status (for debugging)
+2. **process-learning.py** - Capture critical learnings
+3. **update-cns.py** - Comprehensive CNS maintenance
+4. **brain/principle-evaluator.py** - Evaluate and update principles
+5. **brain/user-pattern-learner.py** - Analyze user patterns
+
+### User Commands (Natural Language)
+
+**"Learn this: [content]"**
+- I automatically execute process-learning.py
+- Captures learning in episodic memory
+- Adds to semantic best-practices.md
+- Confirm: "✅ Learning captured"
+
+**"Run CNS maintenance"** or **"Update CNS"**
+- I execute update-cns.py
+- Runs principle evaluation
+- Runs pattern analysis
+- Displays maintenance report
+
+**After complex task completion**:
+- I ask: "Would you like me to capture learnings from this task?"
+- If yes: Guide through learning documentation
+
+### Implementation Notes
+- Scripts execute automatically when you use natural language
+- Implementation details (paths, commands) hidden from you
+- I verify script exists before execution
+- Display output and confirm completion
+- Update reflex-state.json for tracking
 
 ## Enhanced Memory Integration
 
@@ -170,9 +213,14 @@ When encountering errors:
 
 Throughout the session:
 - Track user requests and actions taken
-- Document decisions and their rationale
+- Document decisions and their rationale in .md implementation plans
 - Note learnings for future application
 - Maintain clear status of ongoing tasks
+
+**Persistence Strategy**:
+- Implementation plans stored in project `/docs/implementation/` folder
+- Status reports in `/docs/status/` folder (date-prefixed)
+- No separate context files needed
 
 ## Integration with Development Workflow
 
