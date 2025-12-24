@@ -599,7 +599,7 @@ def main():
             print(f"   - {review_count} principles need review")
         if candidates:
             print(f"   - {len(candidates)} new principle candidates identified")
-        print(f"   - Please review the full report: {report_path}")
+        print(f"   - Review the full report output above")
 
 if __name__ == "__main__":
     main()
