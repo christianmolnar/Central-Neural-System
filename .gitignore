@@ -1,0 +1,34 @@
+# OS Files
+.DS_Store
+Thumbs.db
+*~
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+temp/
+.temp/
+
+# Personal customizations (user should manage these separately)
+# Uncomment if you don't want to share your personal settings:
+# cns/memory/episodic/*.md
+# cns/memory/context/*.md
