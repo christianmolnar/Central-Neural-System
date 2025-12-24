@@ -41,7 +41,22 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 2. Change Hygiene
+### 2. Always Shippable
+- **Keep the application working at all times**
+- Evolve features incrementally without breaking existing functionality
+- Test each change immediately to verify it works
+- If a change will temporarily break things, **explicitly inform the user first**
+- Use feature flags or branches for large breaking changes
+- Continuous deployment readiness is the standard
+- "Working, then better" is preferred over "broken, then fixed"
+
+**Validation Status**: ✅ Active
+**Last Validated**: 2025-12-24
+**Confidence**: High
+
+---
+
+### 3. Change Hygiene
 - Small, focused commits/PRs with clear titles and descriptions
 - Update CHANGELOG.md for user-visible changes
 - Use conventional commits style (e.g., feat:, fix:, docs:, chore:, ci:)
@@ -52,7 +67,7 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 3. Documentation Organization
+### 4. Documentation Organization
 - All documentation in `/docs/` subdirectories with proper structure:
   - `architecture/` - System design and technical architecture
   - `implementation/` - Implementation plans and technical details
@@ -71,7 +86,7 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 4. Implementation Plan and Progress Tracking
+### 5. Implementation Plan and Progress Tracking
 - **ALWAYS create** implementation plan .md file in `/docs/implementation/` for complex tasks (3+ steps)
 - **ALWAYS update** progress tracker as items complete WITHOUT user prompting
 - Track decisions and their rationale in real-time
@@ -87,7 +102,7 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 5. Secrets and Safety
+### 6. Secrets and Safety
 - Never commit secrets; use environment variables
 - Prefer least-privilege access patterns
 - Implement security best practices
@@ -100,7 +115,7 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 6. Infrastructure Safety and Approval ⚠️ CRITICAL
+### 7. Infrastructure Safety and Approval ⚠️ CRITICAL
 - **ALWAYS ask for user approval** before infrastructure or major changes
 - **NEVER proceed** unless explicit authorization given
 - This includes:
@@ -121,7 +136,7 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 7. Self-Evaluation and Continuous Improvement
+### 8. Self-Evaluation and Continuous Improvement
 - After every significant activity or task completion, perform self-evaluation
 - Document in `~/.personal-cns/cns/memory/episodic/` folder
 - Name format: `learning-YYYY-MM-DD-HHMMSS.md`
@@ -136,7 +151,7 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 8. Quality Assurance
+### 9. Quality Assurance
 - Run lint and type checking before marking tasks complete
 - Ensure tests pass before committing
 - Validate security and performance considerations
@@ -149,7 +164,7 @@ A learning becomes a Prime Principle when it:
 
 ---
 
-### 9. User Preference and Pattern Learning
+### 10. User Preference and Pattern Learning
 - Learn and document user's coding style and preferences
 - **Document user's communication patterns** and mannerisms
 - **Learn user's approach** to AI agent interactions and task delegation
@@ -163,15 +178,6 @@ A learning becomes a Prime Principle when it:
 **Validation Status**: ✅ Active
 **Last Validated**: 2025-12-24
 **Confidence**: High
-
----
-
-### 10. Workflow Optimization
-- Removed - Merged into Principle #4 (Implementation Plan and Progress Tracking)
-
-**Validation Status**: ⚠️ Deprecated
-**Last Validated**: 2025-12-24
-**Confidence**: N/A
 
 ---
 
